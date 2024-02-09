@@ -6,7 +6,7 @@ import aerosandbox.tools.units as u
 
 ### Define constants
 gas_constant_universal = 8.31432  # J/(mol*K); universal gas constant
-molecular_mass_air = 28.9644e-3  # kg/mol; molecular mass of air
+molecular_mass_air = 43.2812e-3  # kg/mol; molecular mass of air
 gas_constant_air = gas_constant_universal / molecular_mass_air  # J/(kg*K); gas constant of air
 effective_collision_diameter = 0.365e-9  # m, effective collision diameter of an air molecule
 
@@ -97,19 +97,19 @@ class Atmosphere(AeroSandboxObject):
         See https://en.wikipedia.org/wiki/Density_altitude
         """
         if method.lower() == "approximate":
-            temperature_sea_level = 288.15
-            pressure_sea_level = 101325
+            temperature_sea_level = 273.15-31
+            pressure_sea_level = 699
 
             temperature_ratio = self.temperature() / temperature_sea_level
             pressure_ratio = self.pressure() / pressure_sea_level
 
-            lapse_rate = 0.0065  # K/m, ISA temperature lapse rate in troposphere
+            lapse_rate = 0.00222  # K/m, ISA temperature lapse rate in troposphere
 
             return (
                     (temperature_sea_level / lapse_rate) *
                     (
                             1 - (pressure_ratio / temperature_ratio) ** (
-                            (9.80665 / (gas_constant_air * lapse_rate) - 1) ** -1)
+                            (3.72 / (gas_constant_air * lapse_rate) - 1) ** -1)
                     )
             )
         elif method.lower() == "exact":
@@ -138,12 +138,13 @@ class Atmosphere(AeroSandboxObject):
         """
 
         # Sutherland constants
-        C1 = 1.458e-6  # kg/(m*s*sqrt(K))
-        S = 110.4  # K
+        T0 = 273  # Reference temperature in Kelvin
+        S = 222   # Sutherland's constant in Kelvin
+        mu0 = 1.37e-5  # Dynamic viscosity at T0 in N·s/m²
 
         # Sutherland equation
         temperature = self.temperature()
-        mu = C1 * temperature ** 1.5 / (temperature + S)
+        mu = mu0 * (temperature/ T0)**(3/2) * ((T0 + S) / (temperature + S))
 
         return mu
 
@@ -156,7 +157,7 @@ class Atmosphere(AeroSandboxObject):
         return self.dynamic_viscosity() / self.density()
 
     def ratio_of_specific_heats(self):
-        return 1.4  # TODO model temperature variation
+        return 1.3  # TODO model temperature variation
 
     # def thermal_velocity(self):
     #     """
