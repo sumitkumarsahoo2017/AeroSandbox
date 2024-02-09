@@ -19,11 +19,11 @@ class PerfectGas:
     """
 
     def __init__(self,
-                 pressure: Union[float, np.ndarray] = 101325,
-                 temperature: Union[float, np.ndarray] = 273.15 + 15,
-                 specific_heat_constant_pressure: float = 1006,
-                 specific_heat_constant_volume: float = 717,
-                 molecular_mass: float = 28.9644e-3,
+                 pressure: Union[float, np.ndarray] = 699,
+                 temperature: Union[float, np.ndarray] = 273.15 - 31,
+                 specific_heat_constant_pressure: float = 831.2,
+                 specific_heat_constant_volume: float = 639.4 ,
+                 molecular_mass: float = 43.2812e-3,
                  effective_collision_diameter: float = 0.365e-9,
                  ):
         """
