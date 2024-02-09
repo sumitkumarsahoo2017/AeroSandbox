@@ -221,3 +221,57 @@ if __name__ == "__main__":
         "Temperature, Absolute Error [K]",
         "Altitude [km]"
     )
+    
+### MARTIAN ATMOSPHERE
+### Define constants
+gas_constant_universal = 8.31432  # J/(mol*K); universal gas constant
+molecular_mass_air = 43.2812e-3  # kg/mol; molecular mass of air
+gas_constant_air = gas_constant_universal / molecular_mass_air  # J/(kg*K); gas constant of air
+effective_collision_diameter = 0.365e-9  # m, effective collision diameter of an air molecule
+
+
+### Define the CustomAtmosphere class
+class CustomAtmosphere(AeroSandboxObject):
+    def __init__(self, altitude: float):
+        self.altitude = altitude
+
+    def pressure(self):
+        P_pa = 699 * np.exp(-0.00009 * self.altitude)
+        return P_pa
+
+    def temperature(self):
+        if self.altitude <= 7000:
+            T_celsius = -31 - 0.000998 * self.altitude
+        else:
+            T_celsius = -23.4 - 0.00222 * self.altitude
+        return T_celsius + 273.15  # Convert Celsius to Kelvin
+
+    def density(self):
+        return self.pressure() / (gas_constant_air * self.temperature())
+
+    def speed_of_sound(self):
+        temperature = self.temperature()
+        return (self.ratio_of_specific_heats() * gas_constant_air * temperature) ** 0.5
+
+    def dynamic_viscosity(self):
+        """
+        Returns the dynamic viscosity (mu), in kg/(m*s).
+
+        Based on Sutherland's Law, citing `https://www.cfd-online.com/Wiki/Sutherland's_law`.
+        """
+        # Sutherland constants
+        T0 = 273  # Reference temperature in Kelvin
+        S = 222   # Sutherland's constant in Kelvin
+        mu0 = 1.37e-5  # Dynamic viscosity at T0 in N·s/m²
+
+        # Sutherland equation
+        temperature = self.temperature()
+        mu = mu0 * (temperature/ T0)**(3/2) * ((T0 + S) / (temperature + S))
+
+        return mu
+
+    def ratio_of_specific_heats(self):
+        return 1.3  # TODO model temperature variation
+
+    def __repr__(self):
+        return f"CustomAtmosphere(altitude={self.altitude})"
