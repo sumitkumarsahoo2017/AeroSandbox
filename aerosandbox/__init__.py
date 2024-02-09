@@ -13,7 +13,7 @@ from aerosandbox.dynamics import *
 from aerosandbox.aerodynamics import *
 from aerosandbox.propulsion import *
 from aerosandbox.structures import *
-
+from .atmosphere import CustomAtmosphere
 __version__ = "4.2.0"
 
 
