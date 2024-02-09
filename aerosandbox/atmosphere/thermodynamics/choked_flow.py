@@ -7,8 +7,8 @@ def mass_flow_rate(
         area,
         total_pressure,
         total_temperature,
-        molecular_mass=28.9644e-3,
-        gamma=1.4,
+        molecular_mass=43.2812e-3 ,
+        gamma=1.3,
 ):
     specific_gas_constant = universal_gas_constant / molecular_mass
     return (
