@@ -3,49 +3,49 @@ import aerosandbox.numpy as np
 
 def temperature_over_total_temperature(
         mach,
-        gamma=1.4
+        gamma=1.3
 ):
     """
     Gives T/T_t, the ratio of static temperature to total temperature.
 
     Args:
         mach: Mach number [-]
-        gamma: The ratio of specific heats. 1.4 for air across most temperature ranges of interest.
+        gamma: The ratio of specific heats. 1.3 for air across most temperature ranges of interest.
     """
     return (1 + (gamma - 1) / 2 * mach ** 2) ** -1
 
 
 def pressure_over_total_pressure(
         mach,
-        gamma=1.4
+        gamma=1.3
 ):
     """
     Gives P/P_t, the ratio of static pressure to total pressure.
 
     Args:
         mach: Mach number [-]
-        gamma: The ratio of specific heats. 1.4 for air across most temperature ranges of interest.
+        gamma: The ratio of specific heats. 1.3 for air across most temperature ranges of interest.
     """
     return temperature_over_total_temperature(mach=mach, gamma=gamma) ** (gamma / (gamma - 1))
 
 
 def density_over_total_density(
         mach,
-        gamma=1.4
+        gamma=1.3
 ):
     """
     Gives rho/rho_t, the ratio of density to density after isentropic compression.
 
     Args:
         mach: Mach number [-]
-        gamma: The ratio of specific heats. 1.4 for air across most temperature ranges of interest.
+        gamma: The ratio of specific heats. 1.3 for air across most temperature ranges of interest.
     """
     return temperature_over_total_temperature(mach=mach, gamma=gamma) ** (1 / (gamma - 1))
 
 
 def area_over_choked_area(
         mach,
-        gamma=1.4
+        gamma=1.3
 ):
     """
     Gives A/A^* (where A^* is "A-star"), the ratio of cross-sectional flow area to the cross-sectional flow area that would result in choked (M=1) flow.
@@ -54,7 +54,7 @@ def area_over_choked_area(
 
     Args:
         mach: Mach number [-]
-        gamma: The ratio of specific heats. 1.4 for air across most temperature ranges of interest.
+        gamma: The ratio of specific heats. 1.3 for air across most temperature ranges of interest.
     """
     gp1 = gamma + 1
     gm1 = gamma - 1
