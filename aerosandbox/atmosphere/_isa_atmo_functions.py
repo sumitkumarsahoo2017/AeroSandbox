@@ -4,9 +4,9 @@ from pathlib import Path
 
 ### Define constants
 gas_constant_universal = 8.31432  # J/(mol*K); universal gas constant
-molecular_mass_air = 28.9644e-3  # kg/mol; molecular mass of air
+molecular_mass_air = 43.2812e-3  # kg/mol; molecular mass of air
 gas_constant_air = gas_constant_universal / molecular_mass_air  # J/(kg*K); gas constant of air
-g = 9.81  # m/s^2, gravitational acceleration on earth
+g = 3.72  # m/s^2, gravitational acceleration on earth
 
 ### Read ISA table data
 isa_table = pd.read_csv(Path(__file__).parent.absolute() / "isa_data/isa_table.csv")
@@ -49,7 +49,7 @@ def barometric_formula(
         )
 
 
-isa_pressure = [101325.]  # Pascals
+isa_pressure = [699]  # Pascals
 for i in range(len(isa_table) - 1):
     isa_pressure.append(
         barometric_formula(
