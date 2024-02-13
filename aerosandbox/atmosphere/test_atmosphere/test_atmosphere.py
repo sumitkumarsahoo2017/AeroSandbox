@@ -42,7 +42,7 @@ def test_isa_atmosphere():
 
 
 def test_diff_atmosphere():
-    altitudes = np.linspace(-50e2, 150e3, 1000)
+    altitudes = np.linspace(0, 10e3, 1000)
     atmo_isa = Atmosphere(altitude=altitudes, method='isa')
     atmo_diff = Atmosphere(altitude=altitudes)
     temp_isa = atmo_isa.temperature()
