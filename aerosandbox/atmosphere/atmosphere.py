@@ -232,7 +232,7 @@ if __name__ == "__main__":
     # plt.xlim(-20, 10)
     show_plot(
         "ISA Atmosphere",
-        "Temperature, Absolute Error [K]",
+        "Temperature [K]",
         "Altitude [km]"
     )
 
