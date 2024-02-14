@@ -43,7 +43,7 @@ class Atmosphere(AeroSandboxObject):
         self.altitude = altitude
         self.method = method
         self.temperature_deviation = temperature_deviation
-        self._valid_altitude_range = (0, 80000)
+        self._valid_altitude_range = (0, 10000)
 
     def __repr__(self) -> str:
         try:
@@ -188,7 +188,7 @@ class Atmosphere(AeroSandboxObject):
 
 if __name__ == "__main__":
     # Make AeroSandbox Atmosphere
-    altitude = np.linspace(-5e3, 100e3, 1000)
+    altitude = np.linspace(0e3, 10e3, 1000)
     atmo_diff = Atmosphere(altitude=altitude)
     atmo_isa = Atmosphere(altitude=altitude, method="isa")
 
@@ -203,7 +203,7 @@ if __name__ == "__main__":
         altitude / 1e3,
     )
     set_ticks(0.2, 0.1, 20, 10)
-    plt.xlim(-1, 1)
+    plt.xlim(-2, 2)
     show_plot(
         "AeroSandbox Atmosphere vs. ISA Atmosphere",
         "Pressure, Relative Error [%]",
@@ -216,7 +216,7 @@ if __name__ == "__main__":
         altitude / 1e3,
     )
     set_ticks(1, 0.5, 20, 10)
-    plt.xlim(-5, 5)
+    plt.xlim(-20, 10)
     show_plot(
         "AeroSandbox Atmosphere vs. ISA Atmosphere",
         "Temperature, Absolute Error [K]",
