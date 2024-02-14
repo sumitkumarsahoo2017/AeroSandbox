@@ -27,9 +27,9 @@ interpolated_temperature = InterpolatedModel(
     x_data_coordinates=altitude_knot_points,
     y_data_structured=temperature_knot_points,
 )
-interpolated_pressure = InterpolatedModel(
+interpolated_log_pressure = InterpolatedModel(
     x_data_coordinates=altitude_knot_points,
-    y_data_structured=pressure_knot_points,
+    y_data_structured=np.log(pressure_knot_points),
 )
 
 
@@ -43,7 +43,7 @@ def pressure_differentiable(altitude):
     Returns: Pressure [Pa]
 
     """
-    return interpolated_pressure(altitude)
+    return interpolated_log_pressure(altitude)
 
 
 def temperature_differentiable(altitude):
@@ -56,4 +56,4 @@ def temperature_differentiable(altitude):
     Returns: Temperature [K]
 
     """
-    return interpolated_temperature(altitude)
+    return np.exp(interpolated_log_pressure(altitude))
