@@ -236,6 +236,18 @@ if __name__ == "__main__":
         "Altitude [km]"
     )
 
+    fig, ax = plt.subplots()
+    plt.plot(
+        atmo_diff.temperature(),
+        altitude / 1e3,
+    )
+    # set_ticks(1, 0.5, 20, 10)
+    # plt.xlim(-20, 10)
+    show_plot(
+        "Aerosandbox Atmosphere",
+        "Temperature[K]",
+        "Altitude [km]"
+    )
     
     
 # ### MARTIAN ATMOSPHERE
