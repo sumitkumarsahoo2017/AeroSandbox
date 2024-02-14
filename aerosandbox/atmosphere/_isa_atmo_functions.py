@@ -2,6 +2,10 @@ import aerosandbox.numpy as np
 import pandas as pd
 from pathlib import Path
 
+
+from aerosandbox.common import AeroSandboxObject
+
+import aerosandbox.tools.units as u
 ### Define constants
 gas_constant_universal = 8.31432  # J/(mol*K); universal gas constant
 molecular_mass_air = 43.2812e-3  # kg/mol; molecular mass of air
@@ -133,6 +137,20 @@ def temperature_isa(altitude):
 
     return temp
 
-
+from aerosandbox.tools.pretty_plots import plt, sns, mpl, show_plot, set_ticks
+altitude = np.linspace(0e3, 10e3, 1000)
+atmo_isa = temperature_isa(altitude=altitude)
+fig, ax = plt.subplots()
+plt.plot(
+    atmo_isa,
+    altitude / 1e3,
+)
+    # set_ticks(1, 0.5, 20, 10)
+    # plt.xlim(-20, 10)
+show_plot(
+    "ISA Atmosphere",
+    "Temperature [K]",
+    "Altitude [km]"
+)
 if __name__ == '__main__':
     pressure_isa(-50e3)
