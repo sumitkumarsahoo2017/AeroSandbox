@@ -249,18 +249,18 @@ if __name__ == "__main__":
         "Altitude [km]"
     )
 
-    fig, ax = plt.subplots()
-    plt.plot(
-        np.log(atmo_diff.pressure()),
-        altitude / 1e3,
-    )
-    # set_ticks(1, 0.5, 20, 10)
-    # plt.xlim(-20, 10)
-    show_plot(
-        "Aerosandbox Atmosphere",
-        "log(pressure)",
-        "Altitude [km]"
-    )
+    # fig, ax = plt.subplots()
+    # plt.plot(
+    #     np.log(atmo_diff.pressure()),
+    #     altitude / 1e3,
+    # )
+    # # set_ticks(1, 0.5, 20, 10)
+    # # plt.xlim(-20, 10)
+    # show_plot(
+    #     "Aerosandbox Atmosphere",
+    #     "log(pressure)",
+    #     "Altitude [km]"
+    # )
     
     
 # ### MARTIAN ATMOSPHERE
