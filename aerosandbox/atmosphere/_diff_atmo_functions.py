@@ -17,7 +17,7 @@ from aerosandbox.atmosphere._isa_atmo_functions import pressure_isa, temperature
 # )
 
 # altitude_knot_points = np.sort(np.unique(altitude_knot_points))
-altitude_knot_points = np.linspace(0, 20e3, 1000)
+altitude_knot_points = np.linspace(0, 10e3, 1000)
 print('altitude knot points =',altitude_knot_points)
 temperature_knot_points = temperature_isa(altitude_knot_points)
 pressure_knot_points = pressure_isa(altitude_knot_points)
