@@ -12,12 +12,12 @@ altitude_knot_points = np.array(
         10e3,
       
     ] +
-    list(10e3 + np.geomspace(5e3, 2000e3, 11)) +
-    list(0 - np.geomspace(5e3, 5000e3, 11))
+    list(0 + np.geomspace(1e3, 15e3, 11)) +
+    list(10e3 - np.geomspace(1e3, 15e3, 11))
 )
 
 altitude_knot_points = np.sort(np.unique(altitude_knot_points))
-
+print('altitude knot points =',altitude_knot_points)
 temperature_knot_points = temperature_isa(altitude_knot_points)
 pressure_knot_points = pressure_isa(altitude_knot_points)
 
