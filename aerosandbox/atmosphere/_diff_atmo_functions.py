@@ -12,8 +12,9 @@ altitude_knot_points = np.array(
         10e3,
       
     ] +
-    list(0 + np.geomspace(1e3, 15e3, 11)) +
-    list(10e3 - np.geomspace(1e3, 15e3, 11))
+    list(0 + np.geomspace(1e3, 12e3, 30)) +
+    list(10e3 - np.geomspace(1e3, 12e3, 30))
+    
 )
 
 altitude_knot_points = np.sort(np.unique(altitude_knot_points))
