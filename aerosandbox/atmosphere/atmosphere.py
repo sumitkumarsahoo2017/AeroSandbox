@@ -194,34 +194,34 @@ if __name__ == "__main__":
 
     from aerosandbox.tools.pretty_plots import plt, sns, mpl, show_plot, set_ticks
 
-    fig, ax = plt.subplots()
+    # fig, ax = plt.subplots()
 
-    plt.plot(
-        (
-                (atmo_diff.pressure() - atmo_isa.pressure()) / atmo_isa.pressure()
-        ) * 100,
-        altitude / 1e3,
-    )
-    set_ticks(0.2, 0.1, 20, 10)
-    plt.xlim(-2, 2)
-    show_plot(
-        "AeroSandbox Atmosphere vs. ISA Atmosphere",
-        "Pressure, Relative Error [%]",
-        "Altitude [km]"
-    )
+    # plt.plot(
+    #     (
+    #             (atmo_diff.pressure() - atmo_isa.pressure()) / atmo_isa.pressure()
+    #     ) * 100,
+    #     altitude / 1e3,
+    # )
+    # set_ticks(0.2, 0.1, 20, 10)
+    # plt.xlim(-2, 2)
+    # show_plot(
+    #     "AeroSandbox Atmosphere vs. ISA Atmosphere",
+    #     "Pressure, Relative Error [%]",
+    #     "Altitude [km]"
+    # )
 
-    fig, ax = plt.subplots()
-    plt.plot(
-        atmo_diff.temperature() - atmo_isa.temperature(),
-        altitude / 1e3,
-    )
-    set_ticks(1, 0.5, 20, 10)
-    plt.xlim(-20, 10)
-    show_plot(
-        "AeroSandbox Atmosphere vs. ISA Atmosphere",
-        "Temperature, Absolute Error [K]",
-        "Altitude [km]"
-    )
+    # fig, ax = plt.subplots()
+    # plt.plot(
+    #     atmo_diff.temperature() - atmo_isa.temperature(),
+    #     altitude / 1e3,
+    # )
+    # set_ticks(1, 0.5, 20, 10)
+    # plt.xlim(-20, 10)
+    # show_plot(
+    #     "AeroSandbox Atmosphere vs. ISA Atmosphere",
+    #     "Temperature, Absolute Error [K]",
+    #     "Altitude [km]"
+    # )
 
     fig, ax = plt.subplots()
     plt.plot(
