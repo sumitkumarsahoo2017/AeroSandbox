@@ -1,6 +1,6 @@
 
-import sys
-sys.path.append("C:\\Users\\91784\\AeroSandbox\\aerosandbox")
+# import sys
+# sys.path.append("C:\\Users\\91784\\AeroSandbox\\aerosandbox")
 
 from aerosandbox.common import AeroSandboxObject
 import aerosandbox.numpy as np
@@ -266,3 +266,10 @@ if __name__ == "__main__":
     #     "log(pressure)",
     #     "Altitude [km]"
     # )
+
+# Create an instance of the Atmosphere class
+atmosphere_instance = Atmosphere(0, 'isa')
+
+# Call the temperature method on the instance
+print("the isa temperature at altitude is", atmosphere_instance.temperature())
+print("the isa temperature at altitude is", temperature_isa(0))
