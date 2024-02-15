@@ -110,6 +110,8 @@ def pressure_isa(altitude):
 
 
 def temperature_isa(altitude):
+    print("Running _isa_atmo_functions.py from local directory...")
+
     """
     Computes the temperature at a given altitude based on the International Standard Atmosphere.
 
@@ -154,3 +156,7 @@ show_plot(
 )
 if __name__ == '__main__':
     pressure_isa(-50e3)
+
+# Call the temperature method on the instance
+
+# print("the isa temperature at altitude is", temperature_isa(0))

@@ -9,19 +9,19 @@ from aerosandbox.common import AeroSandboxObject
 import aerosandbox.tools.units as u
 # Define the altitudes of knot points
 
-# altitude_knot_points = np.array(
-#     [
-#         0,
-#         5e3,
-#         10e3,
+altitude_knot_points = np.array(
+    [
+        0,
+        5e3,
+        10e3,
       
-#     ] +
-#     list(0 + np.geomspace(1e3, 12e3, 30)) +
-#     list(10e3 - np.geomspace(1e3, 12e3, 30))
-# )
+    ] +
+    list(0 + np.geomspace(1, 12e3, 30)) +
+    list(10e3 - np.geomspace(1, 12e3, 30))
+)
 
-# altitude_knot_points = np.sort(np.unique(altitude_knot_points))
-altitude_knot_points = np.linspace(-5e3, 20e3, 100)
+altitude_knot_points = np.sort(np.unique(altitude_knot_points))
+
 # print('altitude knot points =',altitude_knot_points)
 temperature_knot_points = temperature_isa(altitude_knot_points)
 pressure_knot_points = pressure_isa(altitude_knot_points)
