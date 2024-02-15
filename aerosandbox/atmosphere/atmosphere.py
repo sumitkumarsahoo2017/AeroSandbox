@@ -1,8 +1,13 @@
+
+import sys
+sys.path.append("C:\\Users\\91784\\AeroSandbox\\aerosandbox")
+
 from aerosandbox.common import AeroSandboxObject
 import aerosandbox.numpy as np
 from aerosandbox.atmosphere._isa_atmo_functions import pressure_isa, temperature_isa
 from aerosandbox.atmosphere._diff_atmo_functions import pressure_differentiable, temperature_differentiable
 import aerosandbox.tools.units as u
+
 
 ### Define constants
 gas_constant_universal = 8.31432  # J/(mol*K); universal gas constant
@@ -43,7 +48,7 @@ class Atmosphere(AeroSandboxObject):
         self.altitude = altitude
         self.method = method
         self.temperature_deviation = temperature_deviation
-        self._valid_altitude_range = (0, 10000)
+        self._valid_altitude_range = (0, 80000)
 
     def __repr__(self) -> str:
         try:
@@ -103,7 +108,7 @@ class Atmosphere(AeroSandboxObject):
             temperature_ratio = self.temperature() / temperature_sea_level
             pressure_ratio = self.pressure() / pressure_sea_level
 
-            lapse_rate = 0.00222  # K/m, ISA temperature lapse rate in troposphere
+            lapse_rate = 0.000998  # K/m, ISA temperature lapse rate in troposphere
 
             return (
                     (temperature_sea_level / lapse_rate) *
@@ -261,58 +266,3 @@ if __name__ == "__main__":
     #     "log(pressure)",
     #     "Altitude [km]"
     # )
-    
-    
-# ### MARTIAN ATMOSPHERE
-# ### Define constants
-# gas_constant_universal = 8.31432  # J/(mol*K); universal gas constant
-# molecular_mass_air = 43.2812e-3  # kg/mol; molecular mass of air
-# gas_constant_air = gas_constant_universal / molecular_mass_air  # J/(kg*K); gas constant of air
-# effective_collision_diameter = 0.365e-9  # m, effective collision diameter of an air molecule
-
-
-# ### Define the CustomAtmosphere class
-# class CustomAtmosphere(AeroSandboxObject):
-#     def __init__(self, altitude: float):
-#         self.altitude = altitude
-
-#     def pressure(self):
-#         P_pa = 699 * np.exp(-0.00009 * self.altitude)
-#         return P_pa
-
-#     def temperature(self):
-#         if self.altitude <= 7000:
-#             T_celsius = -31 - 0.000998 * self.altitude
-#         else:
-#             T_celsius = -23.4 - 0.00222 * self.altitude
-#         return T_celsius + 273.15  # Convert Celsius to Kelvin
-
-#     def density(self):
-#         return self.pressure() / (gas_constant_air * self.temperature())
-
-#     def speed_of_sound(self):
-#         temperature = self.temperature()
-#         return (self.ratio_of_specific_heats() * gas_constant_air * temperature) ** 0.5
-
-#     def dynamic_viscosity(self):
-#         """
-#         Returns the dynamic viscosity (mu), in kg/(m*s).
-
-#         Based on Sutherland's Law, citing `https://www.cfd-online.com/Wiki/Sutherland's_law`.
-#         """
-#         # Sutherland constants
-#         T0 = 273  # Reference temperature in Kelvin
-#         S = 222   # Sutherland's constant in Kelvin
-#         mu0 = 1.37e-5  # Dynamic viscosity at T0 in N·s/m²
-
-#         # Sutherland equation
-#         temperature = self.temperature()
-#         mu = mu0 * (temperature/ T0)**(3/2) * ((T0 + S) / (temperature + S))
-
-#         return mu
-
-#     def ratio_of_specific_heats(self):
-#         return 1.3  # TODO model temperature variation
-
-#     def __repr__(self):
-#         return f"CustomAtmosphere(altitude={self.altitude})"
